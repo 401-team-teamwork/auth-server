@@ -59,6 +59,18 @@ authRouter.post('/key', auth, (request, response, next) => {
   response.status(200).send(key);
 });
 
+/**
+ * Take GameStats Object and attach to the User
+ * @param  {} '/update'
+ * @param  {} auth
+ * @param  {} (request
+ * @param  {} response
+ * @param  {} next
+ * @param  {} =>{letrecord={};record.incorrectEntries=request.body.incorrectEntries;record.correctEntries=request.body.correctEntries;record.wordsPerMinute=request.body.wordsPerMinute;request.user.stats.push(record
+ * @param  {} ;User.findByIdAndUpdate(request.user._id
+ * @param  {} request.user
+ * @param  {true}} {new
+ */
 authRouter.post('/update', auth, (request, response, next) => {
   let record = {};
   record.incorrectEntries = request.body.incorrectEntries;
