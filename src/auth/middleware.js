@@ -10,19 +10,22 @@ const User = require('./users-model.js');
 module.exports = (req, res, next) => {
   
   try {
-    let [authType, authString] = req.headers.authorization.split(/\s+/);
-    switch( authType.toLowerCase() ) {
-    case 'basic': 
-      return _authBasic(authString);
-    case 'bearer':
-      return _authBearer(authString);
-    default: 
-      return _authError();
-    }
-  }
+    let authString = req.body.token;
+    return _authBearer(authString);
+    // let [authType, authString] = req.headers.authorization.split(/\s+/);
+    // switch( authType.toLowerCase() ) {
+    // case 'basic':
+    //   return _authBasic(authString);
+    // case 'bearer':
+    //   return _authBearer(authString);
+    // default:
+    //   return _authError('fdsafdas');
+  //   }
+   }
   catch(e) {
     next(e);
   }
+
 
   /**
    *checks the type of the authorization
@@ -68,7 +71,7 @@ module.exports = (req, res, next) => {
       next();
     }
     else {
-      _authError();
+      _authError('ffff');
     }
   }
 
