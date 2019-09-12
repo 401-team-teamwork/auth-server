@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *
+ * Responds with 500 error for server issues
  * @param err
  * @param req
  * @param res

@@ -17,6 +17,17 @@ const users = new mongoose.Schema({
   stats: [],
 });
 
+/**
+ * Before Save fx() is run hash the password
+ * @param  {} 'save'
+ * @param  {} function(next
+ * @param  {} {bcrypt.hash(this.password
+ * @param  {} 10
+ * @param  {} .then(hashedPassword=>{this.password=hashedPassword;next(
+ * @param  {} ;}
+ * @param  {} .catch(console.error
+ * @param  {} ;}
+ */
 users.pre('save', function(next) {
   bcrypt.hash(this.password, 10)
     .then(hashedPassword => {
@@ -27,7 +38,7 @@ users.pre('save', function(next) {
 });
 
 /**
- *
+ * Authentication for username and password
  * @param auth
  * @returns {Promise<unknown>}
  */
@@ -39,7 +50,7 @@ users.statics.authenticateBasic = function(auth) {
 };
 
 /**
- *
+ * Checks if the given token is tied to an _id
  * @param token
  * @returns {Promise<never>|void|Query}
  */
@@ -55,7 +66,7 @@ users.statics.authenticateToken = function(token){
 };
 
 /**
- *
+ * 
  * @param password
  * @returns {Promise<unknown>}
  */
@@ -65,7 +76,7 @@ users.methods.comparePassword = function(password) {
 };
 
 /**
- *
+ * Creates a token that is tied to a user._id
  * @param type
  * @returns {undefined|*}
  */
