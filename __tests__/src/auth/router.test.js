@@ -30,6 +30,7 @@ describe('Auth Router', () => {
       
       let encodedToken;
       let id;
+      let record = {WPM: '1', correctEnteries: '2', correctEnteries: '3'};
       
       it('can create one', () => {
         return mockRequest.post('/signup')
@@ -64,6 +65,7 @@ describe('Auth Router', () => {
 
           });
       });
+
       it('can signin with key', () => {
         return mockRequest.post('/key')
           .auth(users[userType].username, users[userType].password)
@@ -78,7 +80,20 @@ describe('Auth Router', () => {
           });
       });
 
-    });
+      it('can update database', () => {
+        return mockRequest.post('/update')
+        .auth(users[userType].username, users[userType].password)
+        .send(record)
+        .then(results => {
+          expect(results.status).toBe(200);
+          expect(results.body.WPM).toBe('1');
+          expect(results.body.correctEnteries).toBe('2');
+          expect(results.body.incorrectEnteries).toBe('3');
+        })
+        
+      })
+
+    })
     
   });
   
