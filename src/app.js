@@ -63,7 +63,6 @@ let options = {
 };
 expressSwagger(options);
 
-
 module.exports = {
   server: app,
   start: (port) => app.listen(port || 3000, () => console.log(`Server up on port ${port}`) ),

@@ -18,6 +18,7 @@ const auth = require('./middleware.js');
  * @returns {object} 200
  * @returns {Error}  default - Unexpected error
  */
+
 authRouter.post('/signup', (req, res, next) => {
   let user = new User(req.body);
   user.save()
@@ -42,7 +43,6 @@ authRouter.post('/signup', (req, res, next) => {
 authRouter.post('/signin', auth, (req, res, next) => {
   res.cookie('auth', req.token);
   res.status(200).send(req.token);
-
 });
 
 /**
@@ -80,7 +80,6 @@ authRouter.post('/update', auth, (request, response, next) => {
   User.findByIdAndUpdate(request.user._id, request.user, {new: true})
     .then( result => response.status(200).json(result) )
     .catch( next );
-
 });
 
 module.exports = authRouter;
