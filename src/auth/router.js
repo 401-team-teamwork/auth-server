@@ -18,6 +18,7 @@ const auth = require('./middleware.js');
  * @returns {object} 200
  * @returns {Error}  default - Unexpected error
  */
+
 authRouter.post('/signup', (req, res, next) => {
   let user = new User(req.body);
   user.save()
@@ -42,7 +43,6 @@ authRouter.post('/signup', (req, res, next) => {
 authRouter.post('/signin', auth, (req, res, next) => {
   res.cookie('auth', req.token);
   res.status(200).send(req.token);
-
 });
 
 /**
@@ -59,6 +59,18 @@ authRouter.post('/key', auth, (request, response, next) => {
   response.status(200).send(key);
 });
 
+/**
+ * Take GameStats Object and attach to the User
+ * @param  {} '/update'
+ * @param  {} auth
+ * @param  {} (request
+ * @param  {} response
+ * @param  {} next
+ * @param  {} =>{letrecord={};record.incorrectEntries=request.body.incorrectEntries;record.correctEntries=request.body.correctEntries;record.wordsPerMinute=request.body.wordsPerMinute;request.user.stats.push(record
+ * @param  {} ;User.findByIdAndUpdate(request.user._id
+ * @param  {} request.user
+ * @param  {true}} {new
+ */
 authRouter.post('/update', auth, (request, response, next) => {
   let record = {};
   record.incorrectEntries = request.body.incorrectEntries;
@@ -68,7 +80,6 @@ authRouter.post('/update', auth, (request, response, next) => {
   User.findByIdAndUpdate(request.user._id, request.user, {new: true})
     .then( result => response.status(200).json(result) )
     .catch( next );
-
 });
 
 module.exports = authRouter;
