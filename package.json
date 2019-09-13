@@ -8,7 +8,7 @@
     "typing": "src/gameView.js"
   },
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --verbose --coverage",
     "test-watch": "jest --watchAll --verbose",
     "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
     "lint": "eslint \"**/*.js\"",
@@ -38,6 +38,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "eslint": "^6.2.1"
+    "eslint": "^6.3.0"
   }
 }
